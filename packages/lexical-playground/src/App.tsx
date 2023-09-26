@@ -150,6 +150,7 @@ function App(): JSX.Element {
                     placeholder="press enter here"
                     style={{height: 48, margin: '0 auto 30px', width: 400}}
                   />
+                  <button style={{display: 'none'}} />
                 </div>
                 <Editor />
               </div>
