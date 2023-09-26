@@ -176,7 +176,7 @@ export default function PlaygroundApp(): JSX.Element {
     <SettingsContext>
       <form onSubmit={handleSubmit}>
         <App />
-        <button type="submit" />
+        <button type="submit" style={{display: 'none'}} />
       </form>
       <a
         href="https://github.com/facebook/lexical/tree/main/packages/lexical-playground"
