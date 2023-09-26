@@ -132,35 +132,51 @@ function App(): JSX.Element {
   };
 
   return (
-    <LexicalComposer initialConfig={initialConfig}>
-      <SharedHistoryContext>
-        <TableContext>
-          <SharedAutocompleteContext>
-            <header>
-              <a href="https://lexical.dev" target="_blank" rel="noreferrer">
-                <img src={logo} alt="Lexical Logo" />
-              </a>
-            </header>
-            <div className="editor-shell">
-              <Editor />
-            </div>
-            <Settings />
-            {isDevPlayground ? <DocsPlugin /> : null}
-            {isDevPlayground ? <PasteLogPlugin /> : null}
-            {isDevPlayground ? <TestRecorderPlugin /> : null}
+    <>
+      <LexicalComposer initialConfig={initialConfig}>
+        <SharedHistoryContext>
+          <TableContext>
+            <SharedAutocompleteContext>
+              <header>
+                <a href="https://lexical.dev" target="_blank" rel="noreferrer">
+                  <img src={logo} alt="Lexical Logo" />
+                </a>
+              </header>
 
-            {measureTypingPerf ? <TypingPerfPlugin /> : null}
-          </SharedAutocompleteContext>
-        </TableContext>
-      </SharedHistoryContext>
-    </LexicalComposer>
+              <div className="editor-shell">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="press enter here"
+                    style={{height: 48, margin: '0 auto 30px', width: 400}}
+                  />
+                </div>
+                <Editor />
+              </div>
+              <Settings />
+              {isDevPlayground ? <DocsPlugin /> : null}
+              {isDevPlayground ? <PasteLogPlugin /> : null}
+              {isDevPlayground ? <TestRecorderPlugin /> : null}
+
+              {measureTypingPerf ? <TypingPerfPlugin /> : null}
+            </SharedAutocompleteContext>
+          </TableContext>
+        </SharedHistoryContext>
+      </LexicalComposer>
+    </>
   );
 }
 
 export default function PlaygroundApp(): JSX.Element {
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+  }
   return (
     <SettingsContext>
-      <App />
+      <form onSubmit={handleSubmit}>
+        <App />
+        <button type="submit" />
+      </form>
       <a
         href="https://github.com/facebook/lexical/tree/main/packages/lexical-playground"
         className="github-corner"
